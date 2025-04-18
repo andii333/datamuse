@@ -13,7 +13,7 @@
           (click)="getSynonyms(textArea)">
     Get synonyms
   </button>
-  <button class="container__btn" (click)="copyText()">Copy all text</button>
+  <button class="container__btn">Copy all text</button>
   @if(!!synonyms.length){
   <div class="container__synonym-box">
     @for(synonym of synonyms; track $index){

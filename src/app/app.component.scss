@@ -37,9 +37,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: calc(100vw - 20px);
     padding: 30px;
     box-sizing: border-box;
+    height: 100vh;
+    align-content: start;
   }
 
   &__synonym {
