@@ -4,7 +4,7 @@ import { ApiService } from './services/api.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IDatamuseResponse } from './models/datamuse-response';
 import { catchError, of } from 'rxjs';
-
+import { Clipboard } from '@angular/cdk/clipboard';
 @Component({
   selector: 'app-root',
   imports: [FormsModule],
@@ -19,6 +19,7 @@ export class AppComponent {
   apiService = inject(ApiService);
   destroyRef = inject(DestroyRef);
   synonyms: string[] = [];
+  clipboard = inject(Clipboard);
 
   public countWordsAndChars(): void {
     this.charCount = this.text.length;
@@ -57,5 +58,9 @@ export class AppComponent {
     this.text = this.text.slice(0, start) + newWord + this.text.slice(end);
     this.synonyms = [];
     this.countWordsAndChars();
+  }
+
+  public copyText(): void {
+    this.clipboard.copy(this.text);
   }
 }
