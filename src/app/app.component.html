@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="container__title">The Datamuse Application</h1>
+  <textarea class="container__textarea"
+            #textArea
+            (input)="countWordsAndChars()"
+            [(ngModel)]="text"
+            placeholder="Input text..."></textarea>
+  <p class="container__count-box">
+    <span>{{ "Number of words: " + wordCount }}</span>
+    <span>{{ "Number of characters: " + charCount }}</span>
+  </p>
+  <button class="container__btn"
+          (click)="getSynonyms(textArea)">
+    Get synonyms
+  </button>
+  <button class="container__btn">Copy all text</button>
+  @if(!!synonyms.length){
+  <div class="container__synonym-box">
+    @for(synonym of synonyms; track $index){
+    <span class="container__synonym"
+          (click)="chooseWord(synonym, textArea)">{{ synonym }}</span>
+    }
+  </div>
+  }
+</div>
