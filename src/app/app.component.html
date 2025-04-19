@@ -22,4 +22,9 @@
     }
   </div>
   }
+  @if(isAlert || isEmpty){
+  <p class="container__alert">
+    {{isAlert ? 'Something went wrong, please try again.' : 'no words selected'}}
+  </p>
+  }
 </div>

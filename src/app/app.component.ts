@@ -20,6 +20,8 @@ export class AppComponent {
   destroyRef = inject(DestroyRef);
   synonyms: string[] = [];
   clipboard = inject(Clipboard);
+  isAlert = false;
+  isEmpty = false;
 
   public countWordsAndChars(): void {
     this.charCount = this.text.length;
@@ -34,6 +36,10 @@ export class AppComponent {
 
     if (!selected.trim()) {
       this.synonyms = [];
+       this.isEmpty = true;
+       setTimeout(() => {
+         this.isEmpty = false;
+       }, 2000);
       return;
     }
     const requestText = selected.trim().split(/\s+/).join('+');
@@ -43,12 +49,15 @@ export class AppComponent {
         takeUntilDestroyed(this.destroyRef),
         catchError((error) => {
           console.error('Error fetching synonyms:', error);
-          this.synonyms = [];
+          this.isAlert = true;
+          setTimeout(() => {
+            this.isAlert = false;
+          }, 3000);
           return of([]);
         })
       )
       .subscribe((options: IDatamuseResponse[]) => {
-        this.synonyms = options.map((option) => option.word);
+        if (options?.length) this.synonyms = options.map((option) => option.word);
       });
   }
 

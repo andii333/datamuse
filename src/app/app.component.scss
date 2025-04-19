@@ -1,3 +1,5 @@
+$boxShadow: 5px 5px 15px #767676;
+
 .container {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
@@ -24,12 +26,12 @@
     border: none;
     background-color: inherit;
     border-radius: 7px;
-    box-shadow: 5px 5px 15px rgb(99, 99, 99);
+    box-shadow: $boxShadow;
     cursor: pointer;
   }
 
   &__synonym-box {
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     z-index: 2;
     display: flex;
     gap: 24px;
@@ -46,9 +48,21 @@
 
   &__synonym {
     cursor: pointer;
-    box-shadow: 5px 5px 15px rgb(99, 99, 99);
+    box-shadow: $boxShadow;
     padding: 6px;
     border-radius: 7px;
+  }
+
+  &__alert {
+    position: absolute;
+    z-index: 3;
+    height: 40px;
+    width: 340px;
+    top: calc(100vh/2 - 20px);
+    left: calc(100vw/2 - 170px);
+    box-shadow: $boxShadow;
+    align-content: center;
+    color: #ff0000;
   }
 }
 
